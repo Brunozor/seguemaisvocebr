@@ -21,29 +21,78 @@
     <meta name="twitter:site" content="@lovable_dev" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-    <!-- Facebook Pixel Code (sem envio de eventos) -->
-    <script>
-      !(function(f, b, e, v, n, t, s) {
-        if (f.fbq) return;
-        n = f.fbq = function() {
-          n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-        };
-        if (!f._fbq) f._fbq = n;
-        n.push = n;
-        n.loaded = !0;
-        n.version = '2.0';
-        n.queue = [];
-        t = b.createElement(e);
-        t.async = !0;
-        t.src = v;
-        s = b.getElementsByTagName(e)[0];
-        s.parentNode.insertBefore(t, s);
-      })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+<!-- Facebook Pixel Code (com Correspondência Avançada opcional) -->
+<script>
+  !(function(f, b, e, v, n, t, s) {
+    if (f.fbq) return;
+    n = f.fbq = function() {
+      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+    };
+    if (!f._fbq) f._fbq = n;
+    n.push = n;
+    n.loaded = !0;
+    n.version = '2.0';
+    n.queue = [];
+    t = b.createElement(e);
+    t.async = !0;
+    t.src = v;
+    s = b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t, s);
+  })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
-      fbq('init', '567728368972201');
-      // fbq('track', 'PageView'); // ← desativado: eventos serão enviados pelo backend
-    </script>
-    <!-- End Facebook Pixel Code -->
+  // --- Funções utilitárias para ler e normalizar dados (URL params / fallback) ---
+  function getParam(name) {
+    try {
+      return new URLSearchParams(window.location.search).get(name) || '';
+    } catch (e) {
+      return '';
+    }
+  }
+
+  // tenta vários nomes comuns de parâmetro (em=, email=, ph=, phone=, tel=)
+  const rawEmail = getParam('em') || getParam('email') || '';
+  const rawPhoneRaw = getParam('ph') || getParam('phone') || getParam('tel') || '';
+
+  // normaliza email
+  const email = rawEmail ? String(rawEmail).trim().toLowerCase() : '';
+
+  // normaliza telefone: remove não-dígitos e tenta adicionar DDI 55 se parecer BR e não vier com '+'
+  let phone = '';
+  if (rawPhoneRaw) {
+    const onlyDigits = String(rawPhoneRaw).replace(/\D/g, '');
+    if (onlyDigits) {
+      // se o usuário enviou com + no raw, mantemos + e os dígitos; caso contrário, tentamos heurística BR
+      if (String(rawPhoneRaw).trim().startsWith('+')) {
+        phone = '+' + onlyDigits;
+      } else {
+        // se tiver 10 ou 11 dígitos, supomos Brasil (DDI 55). Se não, deixamos apenas dígitos com +
+        if (onlyDigits.length === 10 || onlyDigits.length === 11) {
+          phone = '+55' + onlyDigits;
+        } else {
+          // prefixa com + para formato E.164 mínimo (pode ainda estar incompleto)
+          phone = '+' + onlyDigits;
+        }
+      }
+    }
+  }
+
+  // monta objeto de correspondência somente com campos presentes
+  const matchingData = {};
+  if (email) matchingData.em = email;
+  if (phone) matchingData.ph = phone;
+
+  // Se não houver dados de correspondência, enviamos init sem terceiro parâmetro
+  if (Object.keys(matchingData).length > 0) {
+    fbq('init', '567728368972201', matchingData);
+  } else {
+    fbq('init', '567728368972201');
+  }
+
+  // Opcional: liberar PageView se quiser rastrear na web (se já estiver enviando pelo backend, mantenha comentado)
+  // fbq('track', 'PageView');
+</script>
+<!-- End Facebook Pixel Code -->
+
   </head>
 
   <body>

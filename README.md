@@ -1,53 +1,73 @@
-DetectaZap
-Visão Geral
-DetectaZap é uma aplicação desenvolvida para monitoramento e rastreamento de interações via WhatsApp, com foco em gerar dados estratégicos para integrações com plataformas da Meta, como Facebook e Instagram.
+# Welcome to your Lovable project
 
-A ferramenta tem como objetivo fornecer insights valiosos sobre o comportamento dos usuários, facilitando a análise de conversas, identificação de padrões de atendimento, performance de campanhas e eficiência em canais de comunicação automatizados.
+## Project info
 
-Ideal para empresas, agências e profissionais que buscam tomadas de decisão baseadas em dados e desejam aprimorar a jornada do cliente dentro do ecossistema de mensagens da Meta.
+**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
 
-Tecnologias Utilizadas
-O DetectaZap é construído com tecnologias modernas e altamente performáticas:
+## How can I edit this code?
 
-Vite – Ferramenta de bundling leve e rápida para desenvolvimento frontend.
+There are several ways of editing your application.
 
-React – Biblioteca JavaScript para construção de interfaces de usuário interativas.
+**Use Lovable**
 
-TypeScript – Superset do JavaScript que adiciona tipagem estática ao projeto.
+Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
 
-shadcn-ui – Conjunto de componentes UI acessíveis e personalizáveis.
+Changes made via Lovable will be committed automatically to this repo.
 
-Tailwind CSS – Framework de utilitários CSS para criação rápida de layouts responsivos.
+**Use your preferred IDE**
 
-Como Executar o Projeto Localmente
-Para rodar o DetectaZap em seu ambiente local, siga os passos abaixo. É necessário ter o Node.js e o npm instalados (recomenda-se o uso do nvm):
+If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
-sh
-Copiar
-Editar
-# 1. Clone o repositório com a URL fornecida
-git clone <SEU_GIT_URL>
+The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-# 2. Acesse a pasta do projeto
-cd detectazap
+Follow these steps:
 
-# 3. Instale as dependências do projeto
-npm install
+```sh
+# Step 1: Clone the repository using the project's Git URL.
+git clone <YOUR_GIT_URL>
 
-# 4. Inicie o servidor de desenvolvimento
+# Step 2: Navigate to the project directory.
+cd <YOUR_PROJECT_NAME>
+
+# Step 3: Install the necessary dependencies.
+npm i
+
+# Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
-A aplicação estará disponível em um ambiente de desenvolvimento com recarregamento automático, permitindo visualizar mudanças em tempo real.
+```
 
-Publicação e Hospedagem
-A aplicação pode ser publicada em qualquer plataforma de hospedagem compatível com projetos Node.js. Para isso:
+**Edit a file directly in GitHub**
 
-Compile o projeto para produção com o comando:
+- Navigate to the desired file(s).
+- Click the "Edit" button (pencil icon) at the top right of the file view.
+- Make your changes and commit the changes.
 
-sh
-Copiar
-Editar
-npm run build
-Faça o deploy do conteúdo da pasta dist para o seu provedor de hospedagem (como Vercel, Netlify, Firebase Hosting ou servidores personalizados).
+**Use GitHub Codespaces**
 
-Integração com Domínios Personalizados
-Você pode configurar um domínio personalizado ao fazer o deploy do projeto. A maioria dos serviços de hospedagem modernos permite isso diretamente via painel de controle, apontando seu domínio para o endereço de IP ou endpoint do serviço.
+- Navigate to the main page of your repository.
+- Click on the "Code" button (green button) near the top right.
+- Select the "Codespaces" tab.
+- Click on "New codespace" to launch a new Codespace environment.
+- Edit files directly within the Codespace and commit and push your changes once you're done.
+
+## What technologies are used for this project?
+
+This project is built with:
+
+- Vite
+- TypeScript
+- React
+- shadcn-ui
+- Tailwind CSS
+
+## How can I deploy this project?
+
+Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+
+## Can I connect a custom domain to my Lovable project?
+
+Yes, you can!
+
+To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)

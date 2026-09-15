@@ -1,106 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Click Flow Connect</title>
+
+    <!-- Hosts do caminho critico do redirecionamento: abre DNS + TCP + TLS em
+         paralelo com o download do bundle, em vez de pagar o handshake inteiro
+         so na hora do fetch. -->
+    <link rel="preconnect" href="https://api.ipify.org" crossorigin />
+    <link rel="preconnect" href="https://www.cloudflare.com" crossorigin />
+    <link rel="preconnect" href="https://webhookv2.engagehub.pro" crossorigin />
+    <link rel="preconnect" href="https://connect.facebook.net" />
+    <!-- TODO: Set the document title to the name of your application -->
+    <title>Lovable App</title>
     <meta name="description" content="Lovable Generated Project" />
     <meta name="author" content="Lovable" />
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet" />
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Click Flow Connect" />
+    <!-- TODO: Update og:title to match your application name -->
+    <meta property="og:title" content="Lovable App" />
     <meta property="og:description" content="Lovable Generated Project" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@lovable_dev" />
+    <meta name="twitter:site" content="@Lovable" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
-
-<!-- Facebook Pixel Code (com Correspondência Avançada opcional) -->
-<script>
-  !(function(f, b, e, v, n, t, s) {
-    if (f.fbq) return;
-    n = f.fbq = function() {
-      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
-    };
-    if (!f._fbq) f._fbq = n;
-    n.push = n;
-    n.loaded = !0;
-    n.version = '2.0';
-    n.queue = [];
-    t = b.createElement(e);
-    t.async = !0;
-    t.src = v;
-    s = b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t, s);
-  })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
-
-  // --- Funções utilitárias para ler e normalizar dados (URL params / fallback) ---
-  function getParam(name) {
-    try {
-      return new URLSearchParams(window.location.search).get(name) || '';
-    } catch (e) {
-      return '';
-    }
-  }
-
-  // tenta vários nomes comuns de parâmetro (em=, email=, ph=, phone=, tel=)
-  const rawEmail = getParam('em') || getParam('email') || '';
-  const rawPhoneRaw = getParam('ph') || getParam('phone') || getParam('tel') || '';
-
-  // normaliza email
-  const email = rawEmail ? String(rawEmail).trim().toLowerCase() : '';
-
-  // normaliza telefone: remove não-dígitos e tenta adicionar DDI 55 se parecer BR e não vier com '+'
-  let phone = '';
-  if (rawPhoneRaw) {
-    const onlyDigits = String(rawPhoneRaw).replace(/\D/g, '');
-    if (onlyDigits) {
-      // se o usuário enviou com + no raw, mantemos + e os dígitos; caso contrário, tentamos heurística BR
-      if (String(rawPhoneRaw).trim().startsWith('+')) {
-        phone = '+' + onlyDigits;
-      } else {
-        // se tiver 10 ou 11 dígitos, supomos Brasil (DDI 55). Se não, deixamos apenas dígitos com +
-        if (onlyDigits.length === 10 || onlyDigits.length === 11) {
-          phone = '+55' + onlyDigits;
-        } else {
-          // prefixa com + para formato E.164 mínimo (pode ainda estar incompleto)
-          phone = '+' + onlyDigits;
-        }
-      }
-    }
-  }
-
-  // monta objeto de correspondência somente com campos presentes
-  const matchingData = {};
-  if (email) matchingData.em = email;
-  if (phone) matchingData.ph = phone;
-
-  // Se não houver dados de correspondência, enviamos init sem terceiro parâmetro
-  if (Object.keys(matchingData).length > 0) {
-    fbq('init', '567728368972201', matchingData);
-  } else {
-    fbq('init', '567728368972201');
-  }
-
-  // Opcional: liberar PageView se quiser rastrear na web (se já estiver enviando pelo backend, mantenha comentado)
-  // fbq('track', 'PageView');
-</script>
-<!-- End Facebook Pixel Code -->
-
   </head>
 
   <body>
-    <!-- App Root -->
     <div id="root"></div>
-
-    <!-- Lovable Engine Script -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

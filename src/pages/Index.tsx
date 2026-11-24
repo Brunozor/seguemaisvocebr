@@ -2,8 +2,8 @@ import { useEffect, useState, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const PIXEL_ID = "567728368972201";
-const WEBHOOK_URL = "https://webhookv2.engagehub.pro/webhook/07ab7948-6b62-49a8-b471-2f52cc21d634";
-const PIXEL_TRACKING_WEBHOOK_URL = "https://webhookv2.engagehub.pro/webhook/metapixelrastreamento";
+const WEBHOOK_URL = "https://webhookblack.engagehub.pro/webhook/07ab7948-6b62-49a8-b471-2f52cc21d634";
+const PIXEL_TRACKING_WEBHOOK_URL = "https://webhookblack.engagehub.pro/webhook/metapixelrastreamento";
 // Endpoint anycast da Cloudflare: devolve o IP de saida real do lead (IPv6
 // quando ele tem um) em ~40ms. Substitui o api64.ipify.org, medido em
 // 660-1270ms, que sozinho segurava o redirecionamento.
